@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	freopen("input.txt", "r", stdin);
+	//freopen("input.txt", "r", stdin);
 
 	int N, B, H, W, p, a, optVal = -1;
 
