@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-	//freopen("11498.txt", "r", stdin);
+	freopen("11498.txt", "r", stdin);
 
 	int K;
 	
