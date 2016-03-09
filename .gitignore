@@ -1,5 +1,5 @@
 *.[oa]
-*.[exe]
-*.[o]
-*.[out]
-*.[txt]
+*.exe
+*.o
+*.out
+*.txt
