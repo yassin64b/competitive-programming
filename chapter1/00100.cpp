@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cmath>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
@@ -11,6 +12,8 @@ int main()
 	freopen("input.txt", "r", stdin);
 
 	int i, j, cycle, max, res, low, up;
+
+	vector<int> val(4000000, 0);
 
 	while(scanf("%d %d", &i, &j) != EOF)
 	{
@@ -26,13 +29,20 @@ int main()
 			cycle = 1, res = t;
 			while(res != 1)
 			{
+				if(res < 4000000 && val[res] != 0)
+				{
+					cycle = cycle - 1 + val[res];
+					break;
+				}
 				res = res%2 == 0 ? res/2 : 3*res+1;
 				++cycle;
 			}
+			val[t] = cycle;
+
 			if(cycle > max)
 				max = cycle;
 		}
 		printf("%d %d %d\n", i, j, max);
 	}
-	
+
 }
