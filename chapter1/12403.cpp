@@ -10,18 +10,22 @@ int main()
 {
 	freopen("input.txt", "r", stdin);
 
-	int T, L, W, H;
+	int T, amount, account = 0;
+	char s[10];
 
 	scanf("%d", &T);
 		
 	for(int t = 1; t <= T; ++t)
 	{
-		scanf("%d %d %d", &L, &W, &H);
-
-		if(L < 21 && H < 21 && W < 21)
-			printf("Case %d: good\n", t);
+		scanf("%s", s);
+		if(strcmp(s, "donate") == 0)
+		{
+			scanf("%d", &amount);
+			account += amount;
+		}	
 		else
-			printf("Case %d: bad\n", t);
+			printf("%d\n", account);
+
 	}
 
 	
