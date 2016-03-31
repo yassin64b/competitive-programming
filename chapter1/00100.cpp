@@ -6,6 +6,7 @@
 
 using namespace std;
 
+#define SIZE 5000000
 
 int main()
 {
@@ -13,7 +14,7 @@ int main()
 
 	int i, j, cycle, max, res, low, up;
 
-	vector<int> val(4000000, 0);
+	vector<int> val(SIZE, 0);
 
 	while(scanf("%d %d", &i, &j) != EOF)
 	{
@@ -29,7 +30,7 @@ int main()
 			cycle = 1, res = t;
 			while(res != 1)
 			{
-				if(res < 4000000 && val[res] != 0)
+				if(res < SIZE && val[res] != 0)
 				{
 					cycle = cycle - 1 + val[res];
 					break;
