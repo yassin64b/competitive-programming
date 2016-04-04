@@ -8,10 +8,7 @@ int process(int n)
 		sum += n%10;
 		n /= 10;
 	}
-	if(sum > 9)
-		return process(sum);
-	else 
-		return sum;
+	return (sum > 9 ? process(sum) : sum);
 }
 int main()
 {
