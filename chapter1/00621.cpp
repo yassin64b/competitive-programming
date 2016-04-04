@@ -12,6 +12,9 @@ int main()
 
 	for(int i = 0; i < n; ++i)
 	{
+		if(i != 0)
+			printf("\n\n");
+
 		scanf("%s", s);
 		k = (int) strlen(s);
 
