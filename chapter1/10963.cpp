@@ -22,7 +22,7 @@ int main()
 		for(int w = 0; w < W; ++w)
 		{
 			scanf("%d %d", &y1, &y2);
-			if(!flag) continue; //printf("%d-%d = %d __\t", y1, y2, y1-y2);
+			if(!flag) continue;
 			if(9999 == gap) 
 				gap = y1 - y2;
 			else if(gap != y1-y2) 
