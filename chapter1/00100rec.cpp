@@ -3,26 +3,26 @@
 #include <cmath>
 #include <cstring>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 #define SIZE 4000000
 
 vector<long long> val(SIZE, 0);
-long long cycle, maxv, low, up;
 
-long long single(long long t)
+long long single(long long n)
 {
-	if (t == 1)
+	if (n == 1)
 		return 1;
 
-	if (t < SIZE && val[t] != 0)
-		return val[t];
+	if (n < SIZE && val[(int)n] != 0)
+		return val[(int)n];
 
-	long long res = 1 + single((t % 2 == 0 ? t / 2 : 3 * t + 1));
+	long long res = 1 + single(((n % 2 == 0) ? (n / 2) : (3 * n + 1)));
 
-	if(t < SIZE)
-		val[t] = res;
+	if (n < SIZE)
+		val[(int)n] = res;
 
 	return res;
 }
@@ -30,7 +30,7 @@ long long single(long long t)
 int main()
 {
 	freopen("input.txt", "r", stdin);
-	long long i,j;
+	long long i, j, maxv, low, up;
 
 	while (scanf("%lld %lld", &i, &j) != EOF)
 	{
@@ -43,10 +43,7 @@ int main()
 
 		for (long long t = low; t <= up; ++t)
 		{
-			cycle = single(t);
-
-			if (cycle > maxv)
-				maxv = cycle;
+			maxv = std::max(maxv, single(t));
 		}
 
 		printf("%lld %lld %lld\n", i, j, maxv);
