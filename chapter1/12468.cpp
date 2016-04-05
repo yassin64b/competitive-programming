@@ -6,11 +6,13 @@ int main()
 {
 	freopen("input.txt", "r", stdin);
 
-	int a, b;
+	int a, b, s;
 
 	while(scanf("%d %d", &a, &b) != EOF && (a != -1 || b != -1))
 	{
-		printf("%d\n", std::min({std::abs(b-a), 100-std::abs(b-a)}));
+		s = std::abs(b-a);
+		printf("%d\n", std::min({s, 100-s}));
+		//alternative:		(s > 50 ? 100 - s : s);
 	}
 	return 0;
 }
