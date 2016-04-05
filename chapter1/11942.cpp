@@ -1,6 +1,5 @@
 #include <cstdio>
 
-
 int main()
 {
 	freopen("input.txt", "r", stdin);
@@ -23,7 +22,7 @@ int main()
 		for(int j = 2; j < 10; ++j)
 		{
 			scanf("%d", &cur);
-			
+
 			if((order == 1 && last >= cur) || (order == 2 && last <= cur))
 				order = 0;
 
