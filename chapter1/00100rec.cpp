@@ -8,35 +8,31 @@ using namespace std;
 
 #define SIZE 4000000
 
-vector<int> val(SIZE, 0);
-int i, j, cycle, maxv, res, low, up;
+vector<long long> val(SIZE, 0);
+long long cycle, maxv, low, up;
 
-int single(int t)
+long long single(long long t)
 {
 	if (t == 1)
 		return 1;
 
-	if (t < SIZE && val[t] == 0) val[t] = single((t % 2 == 0 ? t / 2 : 3 * t + 1)) + 1;
+	if (t < SIZE && val[t] != 0)
+		return val[t];
 
-	return t < SIZE ? val[t] : single((t % 2 == 0 ? t / 2 : 3 * t + 1)) + 1;
-}
+	long long res = 1 + single((t % 2 == 0 ? t / 2 : 3 * t + 1));
 
-void solve()
-{
-	for (int t = low; t <= up; ++t)
-	{
-		cycle = single(t);
+	if(t < SIZE)
+		val[t] = res;
 
-		if (cycle > maxv)
-			maxv = cycle;
-	}
+	return res;
 }
 
 int main()
 {
 	freopen("input.txt", "r", stdin);
+	long long i,j;
 
-	while (scanf("%d %d", &i, &j) != EOF)
+	while (scanf("%lld %lld", &i, &j) != EOF)
 	{
 		maxv = 0;
 
@@ -45,9 +41,15 @@ int main()
 		else
 			low = i, up = j;
 
-		solve();
+		for (long long t = low; t <= up; ++t)
+		{
+			cycle = single(t);
 
-		printf("%d %d %d\n", i, j, maxv);
+			if (cycle > maxv)
+				maxv = cycle;
+		}
+
+		printf("%lld %lld %lld\n", i, j, maxv);
 	}
 	return 0;
 }
