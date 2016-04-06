@@ -5,36 +5,29 @@ int main()
 {
 	freopen("input.txt", "r", stdin);
 
-	int T, N, pos, index, same[101];
-	char in[101][40];
+	int T, N, pos, tmp, move[102];
+	char in[40];
 
 	scanf("%d", &T);
 
 	for(int t = 0; t < T; ++t)
 	{
 		pos = 0;
-		memset(same, 0, 101);
-
 		scanf("%d", &N);
 
-		for(int n = 0; n < N; ++n)
+		for(int n = 1; n <= N; ++n)
 		{
-			index = n;
-			scanf("%s", in[index]);
-
-			if(!strcmp(in[index], "SAME"))
+			scanf("%s", in);
+			if(!strcmp(in, "LEFT"))
+				move[n] = -1;
+			else if(!strcmp(in, "RIGHT"))
+				move[n] = 1;
+			else
 			{
-				scanf("%s %d", in[101], &index);
-				same[n] = --index;
-			}	
-			
-			while(!strcmp(in[index], "SAME"))
-				index = same[index];
-
-			if(!strcmp(in[index], "LEFT"))
-				--pos;
-			else if(!strcmp(in[index], "RIGHT"))
-				++pos;
+				scanf("%s %d", in, &tmp);
+				move[n] = move[tmp];
+			}
+			pos += move[n];
 		}
 		printf("%d\n", pos);
 	}
