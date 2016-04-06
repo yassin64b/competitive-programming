@@ -9,9 +9,9 @@ using namespace std;
 
 #define SIZE 4000000
 
-vector<long long> val(SIZE, 0);
+vector<int> val(SIZE, 0);
 
-long long single(long long n)
+int single(int n)
 {
 	if (n == 1)
 		return 1;
@@ -19,7 +19,7 @@ long long single(long long n)
 	if (n < SIZE && val[(int)n] != 0)
 		return val[(int)n];
 
-	long long res = 1 + single(((n % 2 == 0) ? (n / 2) : (3 * n + 1)));
+	int res = 1 + single(((n % 2 == 0) ? (n / 2) : (3 * n + 1)));
 
 	if (n < SIZE)
 		val[(int)n] = res;
@@ -30,7 +30,7 @@ long long single(long long n)
 int main()
 {
 	freopen("input.txt", "r", stdin);
-	long long i, j, maxv, low, up;
+	int i, j, maxv, low, up;
 
 	while (scanf("%lld %lld", &i, &j) != EOF)
 	{
@@ -41,7 +41,7 @@ int main()
 		else
 			low = i, up = j;
 
-		for (long long t = low; t <= up; ++t)
+		for (int t = low; t <= up; ++t)
 		{
 			maxv = std::max(maxv, single(t));
 		}
