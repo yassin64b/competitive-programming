@@ -1,5 +1,5 @@
 *.[oa]
 *.exe
-*.o
+*.in
 *.out
 *.txt
