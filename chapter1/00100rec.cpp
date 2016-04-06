@@ -42,9 +42,7 @@ int main()
 			low = i, up = j;
 
 		for (int t = low; t <= up; ++t)
-		{
 			maxv = std::max(maxv, single(t));
-		}
 
 		printf("%lld %lld %lld\n", i, j, maxv);
 	}
