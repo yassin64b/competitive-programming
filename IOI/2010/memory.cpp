@@ -1,6 +1,9 @@
-#include <cstdio>
+#include "grader.h"
+#include "memory.h"
 
 /*
+#include <cstdio>
+
 char faceup(int i)
 {
 	if(i > 25)
@@ -12,10 +15,13 @@ char faceup(int i)
 void play()
 {
 	char m[52];
-	bool b[100] = {0};
+	bool b[100] = {0}, isup = false;
 
 	for(int i = 1; i <= 50; ++i)
 	{
+		if(!isup) isup = true;
+		else isup = false;
+		
 		m[i] = faceup(i);
 
 		if(b[(int)m[i]])
@@ -23,9 +29,11 @@ void play()
 			for(int j = 1; j < i; ++j)
 				if(m[i] == m[j])
 				{
-					faceup(i); 
+					if(!isup) 
+						faceup(i);
+
 					faceup(j);
-					printf("%d %d\n", i, j);
+					isup = false;
 				}
 		}	
 		else
