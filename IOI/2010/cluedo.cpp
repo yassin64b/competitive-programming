@@ -1,6 +1,10 @@
+#include "grader.h"
+#include "cluedo.h"
+
+/*
 #include <cstdio>
 
-/*int r1 = 3, r2 = 8, r3 = 2, count;
+int r1 = 3, r2 = 8, r3 = 2, count;
 
 int Theory(int M, int L, int W)
 {
@@ -16,7 +20,7 @@ int Theory(int M, int L, int W)
 }*/
 
 //actual solution
-void solve()
+void Solve()
 {
 	int ret, G[3] = {1, 1, 1};
 	//count = 0;
