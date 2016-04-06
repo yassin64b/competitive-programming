@@ -19,7 +19,7 @@ int Theory(int M, int L, int W)
 void solve()
 {
 	int ret, G[3] = {1, 1, 1};
-	count = 0;
+	//count = 0;
 
 	while((ret = Theory(G[0], G[1], G[2])))
 		++G[ret-1];
