@@ -15,18 +15,16 @@ int main()
 		for(int n = 0; n < N; ++n)
 			cin >> names[n];
 
-		vector<int> value(N), given(N), amount(N);
+		vector<int> value(N), given(N);
 		string cur;
-		int tmp, I, k, j;
+		int amount, I, k, j;
 		for(int n = 0; n < N; ++n)
 		{
-			cin >> cur >> tmp >> I;
+			cin >> cur >> amount >> I;
 
 			for(k = 0; k < N; ++k)
 				if(names[k] == cur)
 					break;
-
-			amount[k] = tmp;
 
 			for(int i = 0; i < I; ++i)
 			{
@@ -35,8 +33,8 @@ int main()
 					if(names[j] == cur)
 						break;
 
-				value[j] += tmp / I;
-				given[k] -= tmp / I;
+				value[j] += amount / I;
+				given[k] -= amount / I;
 			}
 		}
 		for(int n = 0; n < N; ++n)
