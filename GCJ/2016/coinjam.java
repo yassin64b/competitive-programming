@@ -16,11 +16,13 @@ public class coinjam {
 			return BigInteger.valueOf(7);
 		return BigInteger.ZERO;
 	}
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
 	    Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
 	    int T = in.nextInt();  // Scanner has functions to read ints, longs, strings, chars, etc.
 	    
-	    for (int t = 1; t <= T; ++t) {
+	    for (int t = 1; t <= T; ++t) 
+	    {
 	        int N = in.nextInt();
 	        int J = in.nextInt();
 	        System.out.printf("Case #%d:\n", t);
