@@ -3,7 +3,8 @@ import java.io.*;
 import java.math.*;
 
 //works for large input
-public class coinjam {
+public class coinjam 
+{
 	public static BigInteger div(BigInteger val)
 	{
 		if(val.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ZERO) == 0)
@@ -62,17 +63,15 @@ public class coinjam {
 		      	}
 		      	
 		      	int k = helper.length()-1;
-				
-				while(helper.charAt(k) == '1')
-				{
-					helper = helper.substring(0,k) + '0' + helper.substring(k+1);
-					k--;
-				}
-				helper = helper.substring(0,k) + '1' + helper.substring(k+1);
-				coin = "1" + helper + "1";
-				//System.out.printf("%s\n", coin);
+
+		      	while(helper.charAt(k) == '1')
+		      	{
+		      		helper = helper.substring(0,k) + '0' + helper.substring(k+1);
+		      		k--;
+		      	}
+		      	helper = helper.substring(0,k) + '1' + helper.substring(k+1);
+		      	coin = "1" + helper + "1";
 		    }
-		     // System.out.println("Case #" + t + ": " + coin);
-	    }
-    }
+		}
+	}
 }
