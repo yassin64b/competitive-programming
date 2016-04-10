@@ -57,12 +57,12 @@ public class coinjam {
 		      		++count;
 
 		      		for(b = 0; b <= 8; ++b)
-						System.out.printf(" %s", v[b].toString());
-					System.out.printf("\n");
+		      			System.out.printf(" %s", v[b].toString());
+		      		System.out.printf("\n");
 		      	}
 		      	
 		      	int k = helper.length()-1;
-
+				
 				while(helper.charAt(k) == '1')
 				{
 					helper = helper.substring(0,k) + '0' + helper.substring(k+1);
