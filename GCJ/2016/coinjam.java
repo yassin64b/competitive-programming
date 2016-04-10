@@ -17,7 +17,7 @@ public class coinjam
 			return BigInteger.valueOf(7);
 		return BigInteger.ZERO;
 	}
-    public static void main(String[] args) 
+	public static void main(String[] args) 
     {
 	    Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
 	    int T = in.nextInt();  // Scanner has functions to read ints, longs, strings, chars, etc.
