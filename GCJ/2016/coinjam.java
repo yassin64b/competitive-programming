@@ -3,8 +3,7 @@ import java.io.*;
 import java.math.*;
 
 //works for large input
-public class coinjam 
-{
+public class coinjam{
 	public static BigInteger div(BigInteger val)
 	{
 		if(val.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ZERO) == 0)
