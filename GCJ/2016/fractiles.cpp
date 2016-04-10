@@ -8,6 +8,7 @@
 
 using namespace std;
 
+//works only for the small input
 int main()
 {
 	int T, K, C, S;
@@ -17,11 +18,7 @@ int main()
 	for(int t = 1; t <= T; ++t)
 	{
 		scanf("%d %d %d", &K, &C, &S);
-
- 		long long kc = 1;
- 		for(int i = 0; i < C; ++i)
- 			kc *= K;
-
+		
  		printf("Case #%d:", t);
 
  		for(int i = 1; i <= K; ++i)

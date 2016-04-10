@@ -7,7 +7,7 @@
 
 using namespace std;
 
-//works for small input
+//works only for the small input
 long long div(long long val)
 {
 	for(long long i = 2; i*i <= val; ++i)
