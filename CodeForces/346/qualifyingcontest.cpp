@@ -21,7 +21,9 @@ int main()
 	}
 
 	for(int i = 1; i <= M; ++i)
-		sort(v[i].begin(), v[i].end(), greater<pair<int,string>>());
+		sort(v[i].begin(), v[i].end(), [](pair<int,string> a, pair<int,string> b){
+			return a.first > b.first; } );
+		//greater<pair<int,string>>());
 	
 	for(int i = 1; i <= M; ++i)
 	{
