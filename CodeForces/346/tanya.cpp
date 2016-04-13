@@ -20,18 +20,13 @@ int main()
 
 	for(int j = 0; j <= N; ++j)
 	{
-		if(i == v[j]) ++i;
-		else
+		while(sum+i <= M && i < v[j])
 		{
-			while(sum+i <= M && i < v[j])
-			{
-				t.push_back(i);
-				sum += i;
-				++i, ++cnt;
-			}
-			++i;
+			t.push_back(i);
+			sum += i;
+			++i, ++cnt;
 		}
-		
+		++i;
 	}
 
 	cout << cnt << endl;
