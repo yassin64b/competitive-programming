@@ -29,6 +29,8 @@ public:
 			dp[c][d][1] = -1;
 		}
 
+		//initialize border of grid with ones
+		//stop at invalid path
 		dp[0][0][0] = 1;
 		for(int i = 1; i < width+1; ++i)
 		{
@@ -41,6 +43,8 @@ public:
 			dp[0][j][0] = 1;
 		}
 
+		//calculate number of paths from i-1,j and i,j-1
+		//if not bad path
 		for(int i = 1; i < width+1; ++i)
 		{
 			for(int j = 1; j < height+1; ++j)
