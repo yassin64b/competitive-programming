@@ -22,6 +22,7 @@ public:
 		if(N == 2) return ret;
 		if(N == 3) return max(ret, don[2]);
 		
+		//dpf for 0 to N-2, dpl for 1 to N-1
 		vector<int> dpf(N-1, 0), dpl(N-1,0);
 		
 		for(int i = 0; i < N-1; ++i)
