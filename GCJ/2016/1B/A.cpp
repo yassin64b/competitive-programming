@@ -16,13 +16,6 @@ typedef vector<vector<int>> vvi;
 typedef vector<pair<int,int>> vii;
 typedef pair<int,int> pii;
 
-bool finished(vector<int>& v)
-{
-	for(int i = 0; i < (int)v.size(); ++i)
-		if(v[i] != 0) return false;
-	return true;
-}
-
 bool dod(vector<int>& cnt, string s)
 {
 	bool flag = true;
@@ -62,29 +55,27 @@ int main()
 
 		vector<int> num;
 
-		while(!finished(cnt))
-		{
-			while(dod(cnt, "ZERO")) //unique Z
-				num.push_back(0);
-			while(dod(cnt, "SIX")) //unique X
-				num.push_back(6);
-			while(dod(cnt, "FOUR")) // U
-				num.push_back(4);
-			while(dod(cnt, "FIVE")) //rest F
-				num.push_back(5);
-			while(dod(cnt, "TWO")) //W
-				num.push_back(2);
-			while(dod(cnt, "EIGHT")) //G
-				num.push_back(8);
-			while(dod(cnt, "SEVEN")) //rest V
-				num.push_back(7);
-			while(dod(cnt, "ONE")) //rest O
-				num.push_back(1);
-			while(dod(cnt, "THREE")) //rest R
-				num.push_back(3);
-			while(dod(cnt, "NINE")) //rest
-				num.push_back(9);
-		}
+
+		while(dod(cnt, "ZERO")) //unique Z
+			num.push_back(0);
+		while(dod(cnt, "SIX")) //unique X
+			num.push_back(6);
+		while(dod(cnt, "FOUR")) // unique U
+			num.push_back(4);
+		while(dod(cnt, "FIVE")) //after check for 4 unique F
+			num.push_back(5);
+		while(dod(cnt, "TWO")) // unique W
+			num.push_back(2);
+		while(dod(cnt, "EIGHT")) //unique G
+			num.push_back(8);
+		while(dod(cnt, "SEVEN")) //rest V
+			num.push_back(7);
+		while(dod(cnt, "ONE")) //rest O
+			num.push_back(1);
+		while(dod(cnt, "THREE")) //rest R
+			num.push_back(3);
+		while(dod(cnt, "NINE")) //rest
+			num.push_back(9);
 
 		sort(num.begin(), num.end());
 
