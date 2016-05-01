@@ -10,13 +10,7 @@
 
 using namespace std;
 
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
-typedef vector<pair<int,int>> vii;
-typedef pair<int,int> pii;
-
-bool dod(vector<int>& cnt, string s)
+bool check(vector<int>& cnt, string s)
 {
 	bool flag = true;
 	vector<int> tmp(cnt);
@@ -56,29 +50,28 @@ int main()
 		vector<int> num;
 
 
-		while(dod(cnt, "ZERO")) //unique Z
+		while(check(cnt, "ZERO")) //unique Z
 			num.push_back(0);
-		while(dod(cnt, "SIX")) //unique X
+		while(check(cnt, "SIX")) //unique X
 			num.push_back(6);
-		while(dod(cnt, "FOUR")) // unique U
+		while(check(cnt, "FOUR")) // unique U
 			num.push_back(4);
-		while(dod(cnt, "FIVE")) //after check for 4 unique F
+		while(check(cnt, "FIVE")) //after check for 4 unique F
 			num.push_back(5);
-		while(dod(cnt, "TWO")) // unique W
+		while(check(cnt, "TWO")) // unique W
 			num.push_back(2);
-		while(dod(cnt, "EIGHT")) //unique G
+		while(check(cnt, "EIGHT")) //unique G
 			num.push_back(8);
-		while(dod(cnt, "SEVEN")) //rest V
+		while(check(cnt, "SEVEN")) //rest V
 			num.push_back(7);
-		while(dod(cnt, "ONE")) //rest O
+		while(check(cnt, "ONE")) //rest O
 			num.push_back(1);
-		while(dod(cnt, "THREE")) //rest R
+		while(check(cnt, "THREE")) //rest R
 			num.push_back(3);
-		while(dod(cnt, "NINE")) //rest
+		while(check(cnt, "NINE")) //rest
 			num.push_back(9);
 
 		sort(num.begin(), num.end());
-
 
 		cout << "Case #" << t << ": ";
 		for(int& x: num)

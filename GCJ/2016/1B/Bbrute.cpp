@@ -12,12 +12,6 @@
 #include <cctype>
 using namespace std;
 
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
-typedef vector<pair<int,int>> vii;
-typedef pair<int,int> pii;
-
 void solve(string& sc, string& sj)
 {
 	string resc, resj;
@@ -29,7 +23,6 @@ void solve(string& sc, string& sj)
 	for(int i = 0; i < limit; ++i)
 	{
 		string s1 = to_string(i);
-
 		while(s1.size() < sc.size())
 			s1 = '0' + s1;
 
@@ -40,7 +33,6 @@ void solve(string& sc, string& sj)
 				s2 = '0' + s2;
 
 			bool isMatch = true;
-
 			for(int k = 0; isMatch && k < (int)sc.size(); ++k)
 			{
 				if(sc[k] != '?' && sc[k] != s1[k]) isMatch = false;
@@ -54,8 +46,7 @@ void solve(string& sc, string& sj)
 				{
 					dist = tmp;
 					resc = s1, resj = s2;
-				}
-				
+				}	
 			}
 		}
 	}
