@@ -27,13 +27,16 @@ int main()
 		else if(s[i] == '_')
 			num = 63;
 
-		long long tmp = 0;
-		for(int i = 0; i < 64; ++i)
-			for(int j = 0; j < 64; ++j)
-				if(num == (i & j))
-					++tmp;
+		for(int j = 0; j < 6; ++j)
+			if(0 == (num & (1 << j)))
+				res = (res * 3) % MOD;
 
-		res = (res * tmp) % MOD;
+		/*long long tmp = 0;
+		for(int j = 0; j < 64; ++j)
+			for(int k = 0; k < 64; ++k)
+				if(num == (j & k))
+					++tmp;
+		res = (res * tmp) % MOD);*/
 	}
 	cout << res << endl;
 }
