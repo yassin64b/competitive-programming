@@ -1,14 +1,16 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 #include <cstdlib>
 using namespace std;
 
 int main()
 {
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+
 	int S, B;
-	
-	int left[100000+2], right[100000+2];
-	while(scanf("%d %d", &S, &B) && (S || B))
+	vector<int> left(100000+2), right(100000+2);
+	while(cin >> S >> B && (S || B))
 	{
 		for(int i = 1; i <= S; ++i)
 			left[i] = i-1, right[i] = i+1;
@@ -16,23 +18,23 @@ int main()
 		for(int i = 0; i < B; ++i)
 		{
 			int L, R;
-			scanf("%d %d", &L, &R);
+			cin >> L >> R;
 		
 			if(left[L] > 0)
-				printf("%d ", left[L]);
+				cout << left[L] << ' ';
 			else
-				printf("* ");
+				cout << "* ";
 
 			if(right[R] <= S)
-				printf("%d\n", right[R]);
+				cout << right[R] << '\n';
 			else
-				printf("*\n");
+				cout << "*\n";
 
 			left[right[R]] = left[L];
 			right[left[L]] = right[R];
 		}
 
 
-		printf("-\n");
+		cout << "-\n";
 	}
 }
