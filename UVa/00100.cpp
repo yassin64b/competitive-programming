@@ -1,8 +1,9 @@
 #include <cstdlib>
-#include <cstdio>
+#include <iostream>
 #include <cmath>
 #include <cstring>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -10,40 +11,47 @@ using namespace std;
 
 int main()
 {
-	freopen("input.txt", "r", stdin);
+	ios::sync_with_stdio(false);
 
-	int i, j, cycle, max, res, low, up;
+	int i, j;
+	int *val = new int[SIZE];
+	fill(val, val+SIZE, 0);
 
-	vector<int> val(SIZE, 0);
-
-	while(scanf("%d %d", &i, &j) != EOF)
+	while(scanf("%d %d", &i, &j) != EOF) 
 	{
-		max = 0;
+		int max = 0;
+
+		cout << i << " " << j << " ";
 
 		if(i > j)
-			low = j, up = i;
-		else
-			low = i, up = j;
+			swap(i, j);
 
-		for(int t = low; t <= up; ++t)
+		for(; i <= j; ++i) 
 		{
-			cycle = 1, res = t;
+			int cycle = 1;
+			long long res = i;
+
 			while(res != 1)
 			{
+				if(res <= 0)
+				{
+					cout << "overflow" << endl;
+					break;
+				}
 				if(res < SIZE && val[res] != 0)
 				{
 					cycle = cycle - 1 + val[res];
 					break;
 				}
-				res = res%2 == 0 ? res/2 : 3*res+1;
+				res = (res % 2 == 0 ? res / 2 : 3 * res + 1);
 				++cycle;
 			}
-			val[t] = cycle;
+			val[i] = cycle;
 
 			if(cycle > max)
 				max = cycle;
 		}
-		printf("%d %d %d\n", i, j, max);
+		cout << max << endl;
 	}
 
 }
