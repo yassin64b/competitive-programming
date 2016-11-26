@@ -4,6 +4,29 @@
 #include <algorithm>
 using namespace std;
 
+int calcTime(vector<int64_t> &g, int64_t fuel, int64_t s, int64_t k, int64_t &time)
+{
+	int64_t last = 0;
+	time = 0;
+	for (int i = 0; i < k; ++i) {
+		time += (g[i] - last) * 2;
+		if (g[i] - last < fuel) {
+			time -= min(g[i] - last, fuel - (g[i] - last));
+		} else if (g[i] - last > fuel) {
+			return -1;
+		}
+		last = g[i];
+	}
+
+	time += (s - last) * 2;
+	if (s - last < fuel) {
+		time -= min(s - last, fuel - (s - last));
+	} else if (s - last > fuel) {
+		return -1;
+	}
+	return 1;
+}
+
 int main() 
 {
 	ios::sync_with_stdio(false);
@@ -22,68 +45,23 @@ int main()
 
 	int64_t low = 1, high = 4000000000LL;
 	while (low <= high) {
-		bool flag = true;
-		int64_t fuel = (low + high) / 2;
-		int64_t last = 0, time = 0;
-		//cout << fuel << ": " << endl;
-		for (int i = 0; flag && i < k; ++i) {
-			time += (g[i] - last) * 2;
-			if (g[i] - last < fuel) {
-				time -= min(g[i] - last, fuel - (g[i] - last));
-			} else if (g[i] - last > fuel) {
-				low = fuel + 1;
-				flag = false;
-			}
-			//cout << time << " ";
-			last = g[i];
-		}
-		if (!flag) {
-			//cout << endl << endl;
-			continue;
-		}
-		time += (s - last) * 2;
-		if (s - last < fuel) {
-			time -= min(s - last, fuel - (s - last));
-		} else if (s - last > fuel) {
-			low = fuel + 1;
-			continue;
-		}
-		//cout << time << endl << endl;
-		if (time <= t) {
-			fuel = fuel - 1;
-			bool possible = true;
-			int64_t last = 0, time = 0;
-			for (int i = 0; possible && i < k; ++i) {
-				time += (g[i] - last) * 2;
-				if (g[i] - last < fuel) {
-					time -= min(g[i] - last, fuel - (g[i] - last));
-				} else if (g[i] - last > fuel) {
-					low = fuel + 1;
-					possible = false;
-				}
-				last = g[i];
-			}
-			if (!possible) {
-				//if (t == 1000000000) cout << "Hi1" << endl;
+		int64_t fuel = (low + high) / 2, time = 0;
+		int64_t isOk = calcTime(g, fuel, s, k, time);
+		
+		if (isOk == 1 && time <= t) {
+			if (calcTime(g, fuel-1, s, k, time) == 1) {
+				high = fuel - 1;
+			} else {
+				low = fuel;
 				break;
 			}
-			time += (s - last) * 2;
-			if (s - last < fuel) {
-				time -= min(s - last, fuel - (s - last));
-			} else if (s - last > fuel) {
-				low = fuel + 1;
-				//if (t == 1000000000) cout << "Hi2" << endl;
-				break;
-			}
-			high = fuel;
 		} else {
 			low = fuel + 1;
 		}
+
+		//cout << low << " " << high << endl;
 	}
-	//if (t == 1000000000) {
-	//	cout << low << endl;
-	//}
-	//cout << low << endl;
+
 	int64_t min = 10e9;
 	for (int i = 0; i < n; ++i) {
 		if (v[i] >= low && c[i] <= min) {
