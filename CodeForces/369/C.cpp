@@ -48,18 +48,18 @@ int main()
     for (int j = 1; j <= k; ++j) {
       if (c[i] != 0) {
         dp[i][j][c[i]] = dp[i-1][j][c[i]];
-	for (int f = 1; f <= m; ++f) {
-	  if (f == c[i]) continue;
-	  dp[i][j][c[i]] = min(dp[i][j][c[i]], dp[i-1][j-1][f]);
-	}
-	continue;
+        for (int f = 1; f <= m; ++f) {
+          if (f == c[i]) continue;
+          dp[i][j][c[i]] = min(dp[i][j][c[i]], dp[i-1][j-1][f]);
+        }
+        continue;
       }
       for (int f = 1; f <= m; ++f) {
-	dp[i][j][f] = min(dp[i][j][f], dp[i-1][j][f] + p[i][f-1]);
-	for (int ff = 1; ff <= m; ++ff) {
-	  if (f == ff) continue;
-	  dp[i][j][f] = min(dp[i][j][f], dp[i-1][j-1][ff] + p[i][f-1]);
-	}
+        dp[i][j][f] = min(dp[i][j][f], dp[i-1][j][f] + p[i][f-1]);
+        for (int ff = 1; ff <= m; ++ff) {
+          if (f == ff) continue;
+          dp[i][j][f] = min(dp[i][j][f], dp[i-1][j-1][ff] + p[i][f-1]);
+        }
       }
     }
   }
