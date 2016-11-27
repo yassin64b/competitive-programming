@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
+#include <algorithm>
 
 using namespace std;
 
 int main() 
 {
-	ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
     
     long long n, a, b, c;
     cin >> n >> a >> b >> c;
