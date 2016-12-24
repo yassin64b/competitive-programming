@@ -22,10 +22,10 @@ using namespace std;
 
 class TaskE {
 private:
-    void dfs(size_t &i, int d, vector<pair<string,int>> &v, vector<vector<string>> &res) {
+    void dfs(size_t &i, size_t d, vector<pair<string,int>> &v, vector<vector<string>> &res) {
         if (i >= v.size()) return;
 
-        int cnt = v[i].second, sz = i;
+        int cnt = v[i].second;
         string word = v[i].first;
         if (res.size() <= d) {
             res.push_back(vector<string>());
