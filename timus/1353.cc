@@ -23,48 +23,51 @@
 
 using namespace std;
 
-constexpr int LIM = 1e6 + 1;
-constexpr int MIL = 1e9;
-
 class timus1353 {
 public:
     void solve(istream& in, ostream& out) {
         int S;
         in >> S;
+    
+        int res = (S == 1); // if S == 1: 10^9 is one solution
         
-        int cnt = S < 10;
-        vector<int> sumOfDigits(LIM);
-        for (int i = 0; i < 10; ++i) {
-            sumOfDigits[i] = i;
+        //10^9 - 1 got 9 digits
+        vector<vector<int>> dp(9+1, vector<int>(S+1, 0));
+        dp[0][0] = 1;
+        
+        for (int i = 1; i <= 9; ++i) {
+            for (int d = 1; d <= 9; ++d) { //digit to be set at pos i
+                for (int j = 0; j <= S; ++j) { //iterate over prev digit sum
+                    if (j + d <= S) {
+                        for (int k = 0; k < i; ++k) { //iterate here for adding zeroes in between
+                            dp[i][j+d] += dp[k][j];
+                        }
+                    }
+                }
+            }
         }
         
-        int div = 10;
-        for (int i = 10; i < LIM; ++i) {
-            if (i >= div * 10) {
-                div *= 10;
+        for (int i = 1; i <= 9; ++i) {
+            res += dp[i][S];
+            //out << dp[i][S] << " ";
+        }
+        //out << endl;
+        out << res << endl;
+        
+        
+        //verify solution correctness
+        /*int cnt = 0;
+        for (int i = 0; i <= 1000000000; ++i) {
+            int j = i, sod = 0;
+            while (j) {
+                sod += j % 10;
+                j /= 10;
             }
-            sumOfDigits[i] = sumOfDigits[i % div];
-            sumOfDigits[i] += i / div;
-            
-            //cout << i << " -> " << sumOfDigits[i] << endl;
-            //cin.get();
-            
-            if (sumOfDigits[i] == S) {
+            if (sod == S) {
                 ++cnt;
             }
         }
-        
-        bool flag = false;
-        for (int i = LIM; i <= MIL; i += (flag ? 9 : 1)) {
-            int digitSum = sumOfDigits[i % (LIM - 1)];
-            digitSum += sumOfDigits[i / (LIM - 1)];
-        
-            if (digitSum == S) {
-                ++cnt;
-                flag = true;
-            }
-        }
-        out << cnt << endl;
+        assert(cnt == res);*/
     }
 };
 
