@@ -53,11 +53,7 @@ public:
                 }
             }
             
-            //what is max plot size ending at point i,j for price x
-            //note: must be rectangular
-            
             int64_t minprice = 1e18, maxplot = -1;
-            //N,M <= 100 --> 100^4 = 10^8
             for (int i = 0; i < N; ++i) {
                 for (int j = 0; j < M; ++j) {
                     for (int a = i; a < N; ++a) {
