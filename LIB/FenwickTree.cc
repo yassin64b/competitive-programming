@@ -1,7 +1,3 @@
-inline int64_t LSOne(int64_t b) {
-    return (b & (-b));
-}
-
 class FenwickTree {
 private:
     vector<int64_t> ft;
@@ -11,7 +7,7 @@ public:
     }
     int64_t rsq(int64_t b) {
         int sum = 0;
-        for (; b; b -= LSOne(b)) {
+        for (; b; b -= (b & (-b))) {
             sum += ft[b];
         }
         return sum;
@@ -20,9 +16,14 @@ public:
         if (a > b) return 0;
         return rsq(b) - rsq(a - 1);
     }
-    void adjust(int64_t k, int64_t v) {
-        for ( ; k < (int)ft.size(); k += LSOne(k)) {
-            ft[k] += v;
+    void update(int64_t a, int64_t v) {
+        for ( ; a < (int)ft.size(); a += (a & (-a))) {
+            ft[a] += v;
         }
+    }
+    //NOTE: when using range update, rsq(x) is point query, unlike normally
+    void update(int64_t a, int64_t b, int64_t v) {
+        update(a, v);
+        update(b + 1, -v);
     }
 };
