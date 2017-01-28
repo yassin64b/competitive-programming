@@ -44,13 +44,11 @@ private:
         p1 = update_point(left(p), L, (L + R) / 2, idx, new_value);
         p2 = update_point(right(p), (L + R) / 2 + 1, R, idx, new_value);
 
-        // return the pition where the overall minimum is
         return st[p] = ((A[p1] <= A[p2]) ? p1 : p2);
     }
 
 public:
     SegmentTree(const vector<int> &A) : A(A), n(A.size()) {
-        //A = _A; n = (int)A.size();
         st.assign(4 * n, 0);
         build(1, 0, n - 1);
     }

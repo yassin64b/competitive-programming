@@ -18,7 +18,7 @@ public:
     }
     int64_t rsq(int64_t a, int64_t b) {
         if (a > b) return 0;
-        return rsq(b) - (a == 1 ? 0 : rsq(a - 1));
+        return rsq(b) - rsq(a - 1);
     }
     void adjust(int64_t k, int64_t v) {
         for ( ; k < (int)ft.size(); k += LSOne(k)) {
