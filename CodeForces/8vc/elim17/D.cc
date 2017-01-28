@@ -43,12 +43,16 @@ public:
     }
     int64_t rsq(int64_t a, int64_t b) {
         if (a > b) return 0;
-        return rsq(b) - (a == 1 ? 0 : rsq(a - 1));
+        return rsq(b) - rsq(a - 1);
     }
-    void adjust(int64_t k, int64_t v) {
-        for ( ; k < (int)ft.size(); k += LSOne(k)) {
-            ft[k] += v;
+    void update(int64_t a, int64_t v) {
+        for ( ; a < (int)ft.size(); a += LSOne(a)) {
+            ft[a] += v;
         }
+    }
+    void update(int64_t a, int64_t b, int64_t v) {
+        update(a, v);
+        update(b + 1, -v);
     }
 };
 class TaskD {
@@ -61,13 +65,13 @@ public:
         
         FenwickTree ft(n+1);
         for (int i = 1; i < n+1; ++i) {
-            ft.adjust(i, 0);
+            ft.update(i, 0);
         }
         vector<int64_t> g(n+1, 0);
         int cur = 1;
         int64_t sections = 1;
         for (int i = 0; i < n; ++i) {
-            ft.adjust(cur, 1);
+            ft.update(cur, 1);
             //++g[cur];
             
             int64_t add = 1;
@@ -96,7 +100,7 @@ public:
             sections += add;
             out << sections << " ";
             
-            ft.adjust(cur, 1);
+            ft.update(cur, 1);
             //++g[cur];
         }
     }
