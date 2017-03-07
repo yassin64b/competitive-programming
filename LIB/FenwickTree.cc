@@ -21,7 +21,7 @@ public:
             ft[a] += v;
         }
     }
-    //NOTE: when using range update, rsq(x) is point query, unlike normally
+    //NOTE: when using range update, rsq(x) is point query + don't use update(a, v)!!
     void update(int a, int b, int v) {
         update(a, v);
         update(b + 1, -v);
