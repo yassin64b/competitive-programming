@@ -1,3 +1,5 @@
+//easier http://codeforces.com/blog/entry/18051
+
 class SegmentTree {
 private: 
     vector<int> st, A;
