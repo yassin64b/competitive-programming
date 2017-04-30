@@ -26,38 +26,35 @@ using namespace std;
 
 class atD {
 private:
-    bool play(int turn, long long X, long long Y) {
-        for (int i = 1; 2*i <= X; ++i) {
-            if (!play(1 - turn, X - 2*i, Y + i)) {
-                return true;
-            }
+    int N, W;
+    vector<int> w, v;
+    vector<map<int, int>> dp;
+    int solve(int id, int remW) {
+        if (remW == 0 || id == N) {
+            return 0;
         }
-        for (int i = 1; 2*i <= Y; ++i) {
-            if (!play(1 - turn, X + i, Y - 2*i)) {
-                return true;
-            }
+        if (dp[id].find(remW) != dp[id].end()) {
+            return dp[id][remW];
         }
-        return false;
+        if (w[id] > remW) {
+            return dp[id][remW] = solve(id + 1, remW);
+        } else {
+            return dp[id][remW] = max(solve(id + 1, remW), v[id] + solve(id + 1, remW - w[id]));
+        }
     }
 public:
     void solve(istream& in, ostream& out) {
-        long long X, Y;
-        in >> X >> Y;
-        
-        /*
-        //bruteforce for small X,Y to find pattern
-        for (int i = 0; i <= 10; ++i) {
-            for (int j = 0; j <= 10; ++j) {
-                out << "(" << i << "," << j << ")->" << play(0, i, j) << " ";
-            }
-            out << "\n";
-        }*/
-        
-        if (abs(X - Y) > 1) {
-            out << "Alice\n";
-        } else {
-            out << "Brown\n";
+        in >> N >> W;
+        w.resize(N);
+        v.resize(N);
+        vector<pair<int, int>> wv(N);
+        for (int i = 0; i < N; ++i) {
+            in >> w[i] >> v[i];
+            wv[i] = {w[i], v[i]};
         }
+        
+        dp.resize(N);
+        out << solve(0, W) << "\n";
     }
 };
 

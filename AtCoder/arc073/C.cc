@@ -24,40 +24,27 @@
 
 using namespace std;
 
-class at {
-private:
-    int sign(long long a) {
-        return (a >= 0 ? 1 : -1);
-    }
+class atC {
 public:
     void solve(istream& in, ostream& out) {
-        int n;
-        in >> n;
-        vector<int> a(n);
-        for (int i = 0; i < n; ++i) {
-            in >> a[i];
+        int N, T;
+        in >> N >> T;
+        vector<int> t(N);
+        for (int i = 0; i < N; ++i) {
+            in >> t[i];
         }
         
-        long long ans = 1000LL*1000*1000*1000*1000*1000;
-        for (int flag = 0; flag <= 1; ++flag) {
-            long long sum = 0, res = 0;
-            for (int i = 0; i < n; ++i) {
-                sum += a[i];
-                if (i % 2 == flag) {
-                    if (sum <= 0) {
-                        res += 1 - sum;
-                        sum = 1;
-                    }
-                } else {
-                    if (sum >= 0) {
-                        res += 1 + sum;
-                        sum = -1;
-                    }
-                }
+        int run_till = -1, res = 0;
+        for (int i = 0; i < N; ++i) {
+            if (t[i] > run_till) {
+                res += T;
+                run_till = t[i] + T;
+            } else {
+                res += T - (run_till - t[i]);
+                run_till = t[i] + T;
             }
-            ans = min(ans, res);
         }
-        out << ans << "\n";
+        out << res << "\n";
     }
 };
 
@@ -65,7 +52,7 @@ public:
 int main() {
     std::ios::sync_with_stdio(false); cin.tie(nullptr);
 
-    at solver;
+    atC solver;
     std::istream& in(std::cin);
     std::ostream& out(std::cout);
     solver.solve(in, out);
