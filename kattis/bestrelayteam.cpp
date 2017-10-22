@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -47,8 +48,8 @@ int main() {
     			time += v2[j].b;
     		}
     	}
-    	if (time == res) {
-    		cout.precision(17);
+    	if (abs(time - res) < 1e-9) {
+    		cout.precision(2);
     		cout << fixed << time << "\n";
     		cout << v[i].name << "\n";
     		int num = 3;
