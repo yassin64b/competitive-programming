@@ -10,3 +10,6 @@ My solutions to a few problems from some contest sites and online judges:
 * USACO
 * SPOJ
 * Google CodeJam
+* CSAcademy
+* Advent of Code
+* open.kattis
