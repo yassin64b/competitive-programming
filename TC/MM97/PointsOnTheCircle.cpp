@@ -198,36 +198,3 @@ int main() {
         cout << ret[i] << endl;
     cout.flush();
 }
-
-
-/*std::random_device rd;
-        std::mt19937 gen(rd());
-
-        vector<int> st(N), best(N);
-        int best_score = 0;
-        for (int i = 0; i < N; ++i) {
-            st[i] = best[i] = i;
-        }
-        for (int j = 0; j < 10000; ++j) {
-            vector<int> cur(st);
-            for (int i = N - 1; i >= 0; --i) {
-                std::uniform_int_distribution<int> dis(0, i);
-                swap(cur[dis(gen)], cur[i]);
-            }
-            vector<int> inv_cur(N);
-            for (int i = 0; i < N; ++i) {
-                inv_cur[cur[i]] = i;
-            }
-            int cur_score = 0;
-            for (int i = 0; i < N; ++i) {
-                for (int j = 0; j < N; ++j) {
-                    cur_score += matrix[i * N + j] * sqrt(abs(inv_cur[i] - inv_cur[j]));
-                }
-            }
-            if (cur_score > best_score) {
-                best = cur;
-                best_score = cur_score;
-            }
-        }
-        
-        return best;*/
