@@ -74,6 +74,7 @@ fn main() {
                 if earliest_f <= rides[i].f {
                     let earliest_s = cars[j].t + len;
 
+                    /*
                     // time too early for ride.s --> you have to wait
                     let cost1 = std::cmp::max(0, rides[i].s - earliest_s);
                     // distance car to ride begin
@@ -93,6 +94,20 @@ fn main() {
                         bst_f_ind = j as i32;
                         bst_n_ind = i as i32;
                         bst_cost = cost;
+                    }
+                    */
+
+                    // code for D high score
+                    // just take earliest starting ride
+                    // if not late, penalize ride taking you far 
+                    let mut take_time = std::cmp::max(earliest_s, rides[i].s);
+                    if earliest_f <= (T as f64 * 0.98) as i32 {
+                        take_time += rides[i].len / 15;
+                    }
+                    if bst_f_ind == -1 || take_time < bst_cost {
+                        bst_f_ind = j as i32;
+                        bst_n_ind = i as i32;
+                        bst_cost = take_time;
                     }
                 }
             }
