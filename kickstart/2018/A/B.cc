@@ -22,13 +22,16 @@ public:
                 pre_sum[i] = pre_sum[i - 1] + v[i - 1];
             }
             vector<double> E(K + 2, 0.);
-            for (int j = 1; j <= K + 1; ++j) {
+            for (int j = 1, ind = 0; j <= K + 1; ++j) {
                 double sum = 0;
-                /*for (int i = 0; i < N; ++i) { // O(NK)
+                /*for (int i = 0; i < N; ++i) { // O(NK) overall
                     sum += max(v[i], E[j - 1]);
                 }*/
-                auto it = lower_bound(begin(v), end(v), E[j - 1]); // O(NlogK)
-                int ind = it - begin(v);
+                /*auto it = lower_bound(begin(v), end(v), E[j - 1]); // O((N+K)logN) overall
+                int ind = it - begin(v);*/
+                while (ind < N && v[ind] <= E[j - 1]) { // O(NlogN+K) overall
+                    ++ind;
+                }
                 sum = pre_sum[N] - pre_sum[ind] + ind * E[j - 1];
                 E[j] = sum / N;
             }
