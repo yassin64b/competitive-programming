@@ -26,4 +26,19 @@ public:
         update(a, v);
         update(b + 1, -v);
     }
+    int upper_bound(int s) {
+        int pos = 0;
+        for (int bs = msb; bs > 0; bs /= 2) {
+            int nxt = bs + pos;
+            if (nxt <= n && s >= ft[nxt]) {
+                s -= ft[nxt];
+                pos = nxt;
+            }
+        }
+        if (s) {
+            return -1;
+        } else {
+            return pos + 1;
+        }
+    }
 };
