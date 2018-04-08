@@ -1,9 +1,20 @@
+int hibit(unsigned int n) {
+    n |= (n >>  1);
+    n |= (n >>  2);
+    n |= (n >>  4);
+    n |= (n >>  8);
+    n |= (n >> 16);
+    return n - (n >> 1);
+}
+
 class FenwickTree {
 private:
     vector<int> ft;
+    int n, msb;
 public:
-    FenwickTree(int n) {
-        ft.assign(n + 1, 0);
+    FenwickTree(int n_) : n(n_) {
+        ft.assign(n_ + 1, 0);
+        msb = hibit(n);
     }
     int rsq(int b) {
         int sum = 0;
