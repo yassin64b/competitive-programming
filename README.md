@@ -2,14 +2,15 @@
 
 My solutions to a few problems from some contest sites and online judges:
 
-* topcoder (SRMs)
+* TopCoder (SRMs)
 * CodeForces
 * AtCoder
 * UVa OJ
 * Timus
 * USACO
-* SPOJ
 * Google CodeJam
 * CSAcademy
 * Advent of Code
 * open.kattis
+
+and some others
