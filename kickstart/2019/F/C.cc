@@ -34,7 +34,7 @@ void dfs(int u, const vector<vector<int>> &g, vector<int> &vis,
         }
         for (int v : chil) {
             // fix v to be light
-            int vmx = max(dp1[v], max(dp2[v], dp3[v]));
+            i64 vmx = max(dp1[v], max(dp2[v], dp3[v]));
             dp2[u] = max(dp2[u], B[u] + sum12 - vmx + dp1[v]);
         }
 
